@@ -6,6 +6,8 @@ namespace UMS.Areas.Student.Models
     {
         public int? StudentID { get; set; }
 
+        public int BranchID { get; set;}
+
         [Required]
         public string? FirstName { get; set; }
 
@@ -31,13 +33,21 @@ namespace UMS.Areas.Student.Models
         public string? Email { get; set; }
 
         [Required]
-        [RegularExpression("^[0-9]{10}$")]
         public string? EnrollmentNo { get; set; }
 
-        [Required]
         public int CourseID { get; set; }
 
         [Required]
         public int IsOnRoll { get; set; }
+    }
+    public class CourseDropDown
+    {
+        public int CourseID { get; set; }
+        public string? CourseName { get; set; }
+    }
+    public class BranchDropDown
+    {
+        public int BranchID { get; set; }
+        public string? BranchName { get; set; }
     }
 }

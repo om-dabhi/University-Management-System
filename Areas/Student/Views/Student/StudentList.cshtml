@@ -21,15 +21,20 @@
 <table class="table">
     <thead>
         <tr>
-            <th class="col">Student Name</th>
-            <th class="col">MobileNoStudent</th>
-            <th class="col">Email</th>
-            <th class="col">MobileNoFather</th>
+            <th class="col">First Name</th>
+            <th class="col">Last Name</th>
+            <th class="col">Gender</th>
+            <th class="col">Date Of Birth</th>
             <th class="col">Address</th>
-            <th class="col">BirthDate</th>
-            <th class="col">BranchName</th>
-            <th class="col">CityName</th>
-            <th class="col">Action</th>
+            <th class="col">Phone Number</th>
+            <th class="col">Email</th>
+            <th class="col">Enrollment No.</th>
+            <th class="col">Course</th>
+            <th class="col">Branch</th>
+            <th class="col">Created</th>
+            <th class="col">Modified</th>
+            <th class="col">Is On Roll</th>
+            <th class="col">Actions</th>
 
 
         </tr>
@@ -39,18 +44,22 @@
         @foreach (DataRow dr in Model.Rows)
         {
             <tr>
-                <td>@dr["StudentName"]</td>
-                <td>@dr["MobileNoStudent"]</td>
-                <td>@dr["Email"]</td>
-                <td>@dr["MobileNoFather"]</td>
+                <td>@dr["FirstName"]</td>
+                <td>@dr["LastName"]</td>
+                <td>@dr["Gender"]</td>
+                <td>@Convert.ToDateTime(dr["DOB"].ToString())</td>
                 <td>@dr["Address"]</td>
-
-                <td>@Convert.ToDateTime(dr["BirthDate"].ToString())</td>
+                <td>@dr["PhoneNumber"]</td>
+                <td>@dr["Email"]</td>
+                <td>@dr["EnrollmentNo"]</td>
+                <td>@dr["CourseName"]</td>
                 <td>@dr["BranchName"]</td>
-                <td>@dr["CityName"]</td>
+                <td>@Convert.ToDateTime(dr["Created"].ToString())</td>
+                <td>@Convert.ToDateTime(dr["Modified"].ToString())</td>
+                <td>@dr["IsOnRoll"]</td>
                 <td>
-                    <a type="button" class="btn btn-danger" asp-area="Student" asp-controller="Student" asp-action="StudentDelete" asp-route-StudentId="@Convert.ToInt32(dr["StudentId"])"><i class="bi bi-trash"></i></a>
-                    <a type="button" class="btn btn-success" asp-area="Student" asp-controller="Student" asp-action="StudentAddEdit" asp-route-StudentId="@Convert.ToInt32(dr["StudentId"])"><i class="bi bi-brush"></i></a>
+                    <a type="button" class="btn btn-danger" asp-area="Student" asp-controller="Student" asp-action="StudentDelete" asp-route-StudentID="@Convert.ToInt32(dr["StudentID"])"><i class="bi bi-trash"></i></a>
+                    <a type="button" class="btn btn-success" asp-area="Student" asp-controller="Student" asp-action="StudentAddEdit" asp-route-StudentID="@Convert.ToInt32(dr["StudentID"])"><i class="bi bi-brush"></i></a>
 
 
                 </td>

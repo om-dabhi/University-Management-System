@@ -1,64 +1,85 @@
 ﻿@using System.Data;
-@model DataTable;
+@model UMS.Areas.Student.Models.Studentmodel
+
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="pagetitle">
-    <h1>Country List</h1>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
-            <li class="breadcrumb-item active"><a asp-controller="Student" asp-action="StudentList">Student List</a></li>
-        </ol>
-    </nav>
-</div>
-<div>
-    <a class="btn btn-success btn-add" asp-area="Student" asp-controller="Student" asp-action="StudentAddEdit">Add</a>
-</div>
+<form method="post" asp-controller="Student" asp-action="StudentSave">
+        @* @Html.HiddenFor(x=>x.StudentID) *@ 
+    <div class="mb-3">
+        <label class="form-label">First Name</label>
+        <input type="text" class="form-control" asp-for="FirstName">
+        <span class="form-text" asp-validation-for="FirstName"> </span>
+    </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th class="col">Student Name</th>
-            <th class="col">MobileNoStudent</th>
-            <th class="col">Email</th>
-            <th class="col">MobileNoFather</th>
-            <th class="col">Address</th>
-            <th class="col">BirthDate</th>
-            <th class="col">BranchName</th>
-            <th class="col">CityName</th>
-            <th class="col">Action</th>
+    <div class="mb-3">
+        <label class="form-label">Last Name</label>
+        <input type="text" class="form-control" asp-for="LastName">
+        <span class="form-text" asp-validation-for="LastName"> </span>
+    </div>
 
+    <div class="mb-3">
+        <label class="form-label">Gender</label>
+        <input type="text" class="form-control" asp-for="Gender">
+        <span class="form-text" asp-validation-for="Gender"> </span>
+    </div>
 
-        </tr>
-    </thead>
-    <tbody>
+    <div class="mb-3">
+        <label class="form-label">Address</label>
+        <input type="text" class="form-control" asp-for="Address" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
 
-        @foreach (DataRow dr in Model.Rows)
-        {
-            <tr>
-                <td>@dr["StudentName"]</td>
-                <td>@dr["MobileNoStudent"]</td>
-                <td>@dr["Email"]</td>
-                <td>@dr["MobileNoFather"]</td>
-                <td>@dr["Address"]</td>
+    <div class="mb-3">
+        <label class="form-label">Phone Number</label>
+        <input type="text" class="form-control" asp-for="PhoneNumber" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
 
-                <td>@Convert.ToDateTime(dr["BirthDate"].ToString())</td>
-                <td>@dr["BranchName"]</td>
-                <td>@dr["CityName"]</td>
-                <td>
-                    <a type="button" class="btn btn-danger" asp-area="Student" asp-controller="Student" asp-action="StudentDelete" asp-route-StudentId="@Convert.ToInt32(dr["StudentId"])"><i class="bi bi-trash"></i></a>
-                    <a type="button" class="btn btn-success" asp-area="Student" asp-controller="Student" asp-action="StudentAddEdit" asp-route-StudentId="@Convert.ToInt32(dr["StudentId"])"><i class="bi bi-brush"></i></a>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="text" class="form-control" asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
 
+    <div class="mb-3">
+        <label class="form-label">Enrollment Number</label>
+        <input type="text" class="form-control" asp-for="EnrollmentNo" />
+        <span asp-validation-for="EnrollmentNo" class="text-danger"></span>
+    </div>
 
-                </td>
+    <div class="mb-3">
+        <label class="form-label">BirthDate</label>
+        <input type="date" id="datepicker" class="form-control" asp-for="DOB" />
+        <span asp-validation-for="DOB" class="text-danger"></span>
+    </div>
 
-            </tr>
-        }
+    <div class="mb-3">
+        <label class="form-label">Course Name</label>
+        <select id="inputState" class="form-control" asp-for="CourseID"
+                asp-items="@(new SelectList(ViewBag.Courselists,"CourseID","CourseName"))">
 
+            <option disabled selected>Select Course</option>
+        </select>
 
+        <span asp-validation-for="CourseID" class="text-danger"></span>
 
-    </tbody>
-</table>
+    </div>
+
+      <div class="mb-3">
+        <label class="form-label">Branch Name</label>
+        <select id="inputState" class="form-control" asp-for="BranchID"
+                asp-items="@(new SelectList(ViewBag.Branchlists,"BranchID","BranchName"))">
+
+            <option disabled selected>Select Branch</option>
+        </select>
+
+        <span asp-validation-for="BranchID" class="text-danger"></span>
+
+    </div>  
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
