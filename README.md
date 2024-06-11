@@ -24,24 +24,22 @@ Welcome to the **University Management System** repository! This project aims to
 - **Data Management**: Improved data management and accessibility for university staff and students.
 - **Insights**: Provided real-time insights into university metrics through the admin dashboard.
 
-## 📂 Repository Structure
-
-- `/backend` - Contains all backend code and configurations.
-- `/frontend` - Contains all frontend code and UI designs.
-- `/docs` - Documentation and related resources.
-
 ## 🚀 Getting Started
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/your-username/university-management-system.git
+    git clone https://github.com/om-dabhi/university-management-system.git
     ```
 2. **Navigate to the project directory**:
     ```bash
     cd university-management-system
     ```
-3. **Set up the backend and frontend**:
-    - Follow the instructions in the `/backend` and `/frontend` directories to install dependencies and start the servers.
+4. **Set up the database**:
+   - Navigate to the `/sql` directory and execute the SQL script to create the necessary database schema.
+    ```bash
+    cd sql
+    sqlcmd -S your_server_name -i setup_database.sql
+    ```
 
 ---
 
