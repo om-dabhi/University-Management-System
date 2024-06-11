@@ -1,0 +1,113 @@
+﻿@using System.Data;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pagetitle">
+    <h3 class="text-primary">@TempData["StudentInsertMsg"]</h3>
+    <h1>Student List</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active"><a asp-controller="Student" asp-action="StudentList">Student List</a></li>
+            <li class="breadcrumb-item active">Student Details</a></li>
+        </ol>
+    </nav>
+</div>
+ @foreach (DataRow dr in Model.Rows)
+        {
+    <div class="card shadow-sm">
+        <div class="card-header bg-transparent border-0">
+            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>General Information</h3>
+        </div>
+        <div class="card-body pt-0">
+            <table class="table table-bordered">
+                <tr>
+                    <th width="30%">FirstName</th>
+                    <td width="2%">:</td>
+                    <td>@dr["FirstName"]</td>
+                </tr>
+                <tr>
+                    <th width="30%">LastName</th>
+                    <td width="2%">:</td>
+                    <td>@dr["LastName"]</td>
+                </tr>
+                <tr>
+                    <th width="30%">Gender</th>
+                    <td width="2%">:</td>
+                    <td>@dr["Gender"]</td>
+                </tr>
+                <tr>
+                    <th width="30%">DOB</th>
+                    <td width="2%">:</td>
+                    <td>@dr["DOB"]</td>
+                </tr>
+                <tr>
+                    <th width="30%">Address</th>
+                    <td width="2%">:</td>
+                    <td>@dr["Address"]</td>
+                </tr>
+                <tr>
+                    <th width="30%">PhoneNumber</th>
+                    <td width="2%">:</td>
+                    <td>@dr["PhoneNumber"]</td>
+                </tr>
+                <tr>
+                    <th width="30%">Email</th>
+                    <td width="2%">:</td>
+                    <td>@dr["Email"]</td>
+                </tr>
+                <tr>
+                    <th width="30%">EnrollmentNo</th>
+                    <td width="2%">:</td>
+                    <td>@dr["EnrollmentNo"]</td>
+                </tr>
+                <tr>
+                    <th width="30%">Address</th>
+                    <td width="2%">:</td>
+                    <td>@dr["Address"]</td>
+                </tr>
+                <tr>
+                    <th width="30%">CourseName</th>
+                    <td width="2%">:</td>
+                    <td>@dr["CourseName"]</td>
+                </tr>
+                <tr>
+                    <th width="30%">BranchName</th>
+                    <td width="2%">:</td>
+                    <td>@dr["BranchName"]</td>
+                </tr>
+                <tr>
+                    <th width="30%">Created</th>
+                    <td width="2%">:</td>
+                    <td>@dr["Created"]</td>
+                </tr>
+                <tr>
+                    <th width="30%">Modified</th>
+                    <td width="2%">:</td>
+                    <td>@dr["Modified"]</td>
+                </tr>
+                <tr>
+                    <th width="30%">Status</th>
+                    <td width="2%">:</td>
+                    @{
+                        String status = "";
+                        if (Convert.ToInt32(@dr["IsOnRoll"]) == 1)
+                        {
+                            status = "Active";
+
+
+                        }
+                        else
+                        {
+                            status = "Not Active";
+                        }
+                    }
+                    <td>@status</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    }

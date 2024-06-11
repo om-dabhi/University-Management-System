@@ -7,11 +7,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.102.2" />
+    <PackageReference Include="EnterpriseLibrary.Data" Version="6.0.1304" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\AdminDash\Data\" />
+    <Folder Include="Areas\AdminDash\Models\" />
+    <Folder Include="Areas\Branch\Data\" />
+    <Folder Include="Areas\Course\Controllers\" />
+    <Folder Include="Areas\Course\Data\" />
+    <Folder Include="Areas\Course\Models\" />
+    <Folder Include="Areas\Course\Views\Course\" />
+    <Folder Include="Areas\Faculty\Data\" />
+    <Folder Include="Areas\Login\Data\" />
+    <Folder Include="Areas\Login\Views\Login\" />
     <Folder Include="Areas\Student\Data\" />
   </ItemGroup>
 

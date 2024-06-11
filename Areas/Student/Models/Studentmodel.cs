@@ -6,44 +6,52 @@ namespace UMS.Areas.Student.Models
     {
         public int? StudentID { get; set; }
 
-        public int BranchID { get; set;}
+        [Required(ErrorMessage = "BranchID is required.")]
+        public int BranchID { get; set; }
 
-        [Required]
-        public string? FirstName { get; set; }
+        [Required(ErrorMessage = "First Name is required.")]
+        public string FirstName { get; set; }
 
-        [Required]
-        public string? LastName { get; set; }
+        [Required(ErrorMessage = "Last Name is required.")]
+        public string LastName { get; set; }
 
-        [Required]
-        public string? Gender { get; set; }
+        [Required(ErrorMessage = "Gender is required.")]
+        public string Gender { get; set; }
 
-        [Required]
-        public string? DOB { get; set; }
+        [Required(ErrorMessage = "Date of Birth is required.")]
+        public DateTime DOB { get; set; }
 
-        [Required]
-        [MinLength(20)]
-        public string? Address { get; set; }
+        [Required(ErrorMessage = "Address is required.")]
+        [MinLength(5, ErrorMessage = "Address should be at least 20 characters long.")]
+        public string Address { get; set; }
 
-        [Required]
-        [RegularExpression("^[0-9]{10}$")]
-        public string? PhoneNumber { get; set; }
+        [Required(ErrorMessage = "Phone Number is required.")]
+        [RegularExpression("^[0-9]{10}$", ErrorMessage = "Phone Number should be 10 digits.")]
+        public string PhoneNumber { get; set; }
 
-        [Required]
-        [RegularExpression("[a-z0-9]+@[a-z]+\\.[a-z]{2,3}", ErrorMessage = "Please enter Valid Email Address")]
-        public string? Email { get; set; }
+        [Required(ErrorMessage = "Email is required.")]
+        public string Email { get; set; }
 
-        [Required]
-        public string? EnrollmentNo { get; set; }
+        [Required(ErrorMessage = "Enrollment Number is required.")]
+        public string EnrollmentNo { get; set; }
 
+        public DateTime? Created { get; set; }
+        public DateTime? Modified { get; set; }
+
+        [Required(ErrorMessage = "Course ID is required.")]
         public int CourseID { get; set; }
 
-        [Required]
-        public int IsOnRoll { get; set; }
+        [Required(ErrorMessage = "On Roll status is required.")]
+        public bool IsOnRoll { get; set; }
+        public string CourseName { get; set; }
+        public string BranchName { get; set; }
     }
     public class CourseDropDown
     {
+        public int Sem { get; set; }
         public int CourseID { get; set; }
         public string? CourseName { get; set; }
+        public bool IsSelected { get; internal set; }
     }
     public class BranchDropDown
     {

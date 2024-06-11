@@ -1,0 +1,79 @@
+﻿@using System.Data;
+@model UMS.Areas.Faculty.Models.FacultyModel;
+@{
+    ViewData["Title"] = "Faculty Add/Edit";
+}
+<div class="pagetitle">
+    <h1>Faculty Add/Edit</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active"><a asp-controller="Faculty" asp-action="FacultyList">Faculty Add/Edit</a></li>
+        </ol>
+    </nav>
+</div>
+<div class="table-responsive">
+<form method="post" asp-area="Faculty" asp-controller="Faculty" asp-action="FacultySave">
+    @Html.HiddenFor(x => x.FacultyID)
+    <div class="mb-3">
+        <label class="form-label">Faculty Name</label>
+        <input type="text" class="form-control" asp-for="FacultyName">
+            <span asp-validation-for="FacultyName" class="text-danger"></span>
+    </div>
+
+    @* <div class="mb-3">
+        <label class="form-label">Experience</label>
+        <input type="text" class="form-control" asp-for="Experience">
+            <span asp-validation-for="Experience" class="text-danger"></span>
+    </div> *@
+        <div class="mb-3">
+            <label class="form-label">Experience</label>
+            <select id="inputState" class="form-control" asp-for="ExperienceID"
+                    asp-items="@(new SelectList(ViewBag.Experiencelist,"ExperienceID","Experience"))">
+
+                <option disabled selected>Select Experience</option>
+            </select>
+
+            <span asp-validation-for="ExperienceID" class="text-danger"></span>
+
+        </div>
+
+
+    <div class="mb-3">
+        <label class="form-label">PhoneNumber</label>
+        <input type="text" class="form-control" asp-for="PhoneNumber">
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Location</label>
+        <input type="text" class="form-control" asp-for="Location" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="text" class="form-control" asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Course Name</label>
+        <select id="inputState" class="form-control" asp-for="CourseID"
+                asp-items="@(new SelectList(ViewBag.Courselists,"CourseID","CourseName"))">
+
+            <option disabled selected>Select Course</option>
+        </select>
+
+        <span asp-validation-for="CourseID" class="text-danger"></span>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

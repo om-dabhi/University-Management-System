@@ -1,0 +1,29 @@
+﻿@model UMS.Areas.Course.Models.CourseModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="pagetitle">
+    <h1>Course Add-Edit</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active"><a asp-controller="Course" asp-action="CourseAddEdit">Course Add-Edit</a></li>
+        </ol>
+    </nav>
+</div>
+<form method="post" asp-controller="Course" asp-action="CourseSave">
+    <input type="hidden" asp-for="CourseID" />
+    <div class="mb-3">
+        <label class="form-label">Course Name</label>
+        <input type="text" class="form-control" asp-for="CourseName">
+        <span asp-validation-for="CourseName" class="text-danger"></span> 
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

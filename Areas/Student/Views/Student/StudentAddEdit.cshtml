@@ -1,30 +1,36 @@
 ﻿@using System.Data;
-@model UMS.Areas.Student.Models.Studentmodel
-
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model UMS.Areas.Student.Models.Studentmodel;
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Student Add/Edit";
 }
-<form method="post" asp-controller="Student" asp-action="StudentSave">
-        @* @Html.HiddenFor(x=>x.StudentID) *@ 
+<div class="pagetitle">
+    <h1>Student Add/Edit</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active"><a asp-controller="Student" asp-action="StudentList">Student Add/Edit</a></li>
+        </ol>
+    </nav>
+</div>
+<div class="table-responsive"> 
+<form method="post" asp-area="Student" asp-controller="Student" asp-action="StudentSave">
+     @Html.HiddenFor(x=>x.StudentID)
     <div class="mb-3">
         <label class="form-label">First Name</label>
         <input type="text" class="form-control" asp-for="FirstName">
-        <span class="form-text" asp-validation-for="FirstName"> </span>
+            <span asp-validation-for="FirstName" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
         <label class="form-label">Last Name</label>
         <input type="text" class="form-control" asp-for="LastName">
-        <span class="form-text" asp-validation-for="LastName"> </span>
+            <span asp-validation-for="LastName" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
         <label class="form-label">Gender</label>
         <input type="text" class="form-control" asp-for="Gender">
-        <span class="form-text" asp-validation-for="Gender"> </span>
+            <span asp-validation-for="Gender" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
@@ -69,7 +75,7 @@
 
     </div>
 
-      <div class="mb-3">
+    <div class="mb-3">
         <label class="form-label">Branch Name</label>
         <select id="inputState" class="form-control" asp-for="BranchID"
                 asp-items="@(new SelectList(ViewBag.Branchlists,"BranchID","BranchName"))">
@@ -79,7 +85,66 @@
 
         <span asp-validation-for="BranchID" class="text-danger"></span>
 
-    </div>  
+    </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <fieldset class="row mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">IsOnRoll</legend>
+        <div class="col-sm-10">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="IsOnRoll" id="gridRadios1" value="True" asp-for="IsOnRoll">
+                <label class="form-check-label" for="gridRadios1">
+                    On Roll
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="IsOnRoll" id="gridRadios2" value="False" asp-for="IsOnRoll">
+                <label class="form-check-label" for="gridRadios2">
+                    Off Roll
+                </label>
+            </div>
+        </div>
+    </fieldset>
+
+        <button type="submit" class="btn btn-primary" onclick="function()">Submit</button>
 </form>
+</div>  
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<script>
+    $(document).ready(function() {
+        $('form').submit(function (e) {
+            e.preventDefault(); // Prevent the form from submitting normally
+            var form = $(this);
+            $.ajax({
+                url: form.attr('action'),
+                method: form.attr('method'),
+                data: form.serialize(),
+                success: function (response) {
+                    // Handle success response
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Student record saved successfully!',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirect or do something else after success
+                            // For example, you can redirect to another page
+                            window.location.href = '/Student/StudentList';
+                        }
+                    });
+                },
+                error: function (xhr) {
+                    // Handle error response if needed
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'An error occurred while saving the student record.',
+                    });
+                }
+            });
+        });
+    });
+</script>
