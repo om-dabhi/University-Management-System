@@ -37,8 +37,8 @@ Welcome to the **University Management System** repository! This project aims to
 4. **Set up the database**:
    - Navigate to the `/sql` directory and execute the SQL script to create the necessary database schema.
     ```bash
-    cd sql
-    sqlcmd -S your_server_name -i setup_database.sql
+    cd SQL
+    sqlcmd -S your_server_name -i UMSDBScript.sql
     ```
 
 ---
